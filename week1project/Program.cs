@@ -25,40 +25,45 @@ namespace week1project
 			{
 				Console.WriteLine("Welcome to the Fortune Teller. Type \"quit\" to quit.");
 
-				Console.WriteLine("Enter your first name");
-				input = Console.ReadLine();
+				string[] questionArray =
+				{
+					"Enter your first name.",
+					"Enter your last name.",
+					"Enter your age.",
+					"Enter your birthmonth as a digit (1-12)",
+					"Enter your favorite ROYGBIV color (type 'help' if you do not know what this is).",
+					"Enter how many siblings you have."
+				};
+
+				input = Program.Question(questionArray[0]);
 				if (input == "quit")
 				{
 					break;
 				}
 				string firstName = input;
 
-				Console.WriteLine("Enter your last name");
-				input = Console.ReadLine();
+				input = Program.Question(questionArray[1]);
 				if (input == "quit")
 				{
 					break;
 				}
-				string lastName = Console.ReadLine();
+				string lastName = input;
 
-				Console.WriteLine("Enter your age");
-				input = Console.ReadLine();
+				input = Program.Question(questionArray[2]);
 				if (input == "quit")
 				{
 					break;
 				}
 				int age = int.Parse(input);
 
-				Console.WriteLine("Enter your birthmonth as a digit (1-12)");
-				input = Console.ReadLine();
+				input = Program.Question(questionArray[3]);
 				if (input == "quit")
 				{
 					break;
 				}
 				int birthMonth = int.Parse(input);
 
-				Console.WriteLine("Enter your favorite ROYGBIV color (type 'help' if you do not know what this is)");
-				input = Console.ReadLine();
+				input = Program.Question(questionArray[4]);
 				string color = input;
 				while (color.ToLower() == "help")
 				{
@@ -70,8 +75,7 @@ namespace week1project
 				};
 				input = color;
 
-				Console.WriteLine("Enter how many siblings you have.");
-				input = Console.ReadLine();
+				input = Program.Question(questionArray[5]);
 				int siblings = int.Parse(input);
 
 				/*
@@ -129,7 +133,7 @@ namespace week1project
 				switch (color.ToLower())
 				{
 					case "red":
-						favoriteVehicle = "Abrams tank with live ammunition";
+						favoriteVehicle = "WW2 tank with live ammunition";
 						break;
 					case "orange":
 						favoriteVehicle = "steam train retrofitted with car tires";
@@ -184,14 +188,21 @@ namespace week1project
 				 Program should be able to handle whether or not a user inputs capital or lowercase letters.
 				 */
 
-				Console.WriteLine(firstName + ' ' + lastName + "will retire in " + retire + " with " + bankCash + " in the bank, "
-									+ "a vacation home in " + vacationHome + " and a " + favoriteVehicle + '.');
+				Console.WriteLine(	firstName + ' ' + lastName + " will retire in " + retire + " years with $" + bankCash + " in the bank, " + 
+									"a vacation home in " + vacationHome + " and a " + favoriteVehicle + '.'	);
 				quit = true;
 			}
 			if (input == "quit")
 			{
 				Console.WriteLine("Nobody likes a quitter...");
 			}
+		}
+
+		static string Question(string question)
+		{
+			Console.WriteLine(question);
+			string value = Console.ReadLine();
+			return value;
 		}
 		
 	}
