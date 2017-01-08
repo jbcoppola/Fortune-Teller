@@ -18,10 +18,11 @@ namespace week1project
 				 Ask the user for the user’s favorite ROYGBIV color
 				 If the user does not know what ROYGBIV is, ask them to enter “Help” to get a list of the ROYGBIV colors
 				 Ask the user for the number of siblings the user has
-				 */
+			*/
+
 			string input = "";
-			bool quit = false;
-			while (input != "quit" && quit == false)
+			bool endQuit = false;
+			while (input != "quit" && endQuit == false)
 			{
 				Console.WriteLine("Welcome to the Fortune Teller. Type \"quit\" to quit.");
 
@@ -31,33 +32,35 @@ namespace week1project
 					"Enter your last name.",
 					"Enter your age.",
 					"Enter your birthmonth as a digit (1-12)",
-					"Enter your favorite ROYGBIV color (type 'help' if you do not know what this is).",
+					"Enter your favorite ROYGBIV color (type 'help' if you do not know what this is)",
 					"Enter how many siblings you have."
 				};
 
+				//breaks can't be used in a method to break from the while loop, so we have to repeat code after each method call
+				//this also prevents using a for loop, since it needs to exit immediately
 				input = Program.Question(questionArray[0]);
-				if (input == "quit")
+				if (input.ToLower() == "quit")
 				{
 					break;
 				}
 				string firstName = input;
 
 				input = Program.Question(questionArray[1]);
-				if (input == "quit")
+				if (input.ToLower() == "quit")
 				{
 					break;
 				}
 				string lastName = input;
 
 				input = Program.Question(questionArray[2]);
-				if (input == "quit")
+				if (input.ToLower() == "quit")
 				{
 					break;
 				}
 				int age = int.Parse(input);
 
 				input = Program.Question(questionArray[3]);
-				if (input == "quit")
+				if (input.ToLower() == "quit")
 				{
 					break;
 				}
@@ -124,6 +127,10 @@ namespace week1project
 				{
 					vacationHome = "France";
 				}
+				else if (siblings > 3)
+				{
+					vacationHome = "Jamaica";
+				}
 				else
 				{
 					vacationHome = "Antarctica";
@@ -142,7 +149,7 @@ namespace week1project
 						favoriteVehicle = "very small and improprietously painted submarine";
 						break;
 					case "green":
-						favoriteVehicle = "blimp emblazoned with the logo for the short-lived 1939 comedy troupe \"Axison Allies\"";
+						favoriteVehicle = "blimp emblazoned with logo for the short-lived 1939 comedy troupe \"Axison Allies\"";
 						break;
 					case "blue":
 						favoriteVehicle = "pirate ship loaded with stolen Spanish silver. Avast";
@@ -190,14 +197,15 @@ namespace week1project
 
 				Console.WriteLine(	firstName + ' ' + lastName + " will retire in " + retire + " years with $" + bankCash + " in the bank, " + 
 									"a vacation home in " + vacationHome + " and a " + favoriteVehicle + '.'	);
-				quit = true;
+				endQuit = true;
 			}
-			if (input == "quit")
+			if (input.ToLower() == "quit")
 			{
 				Console.WriteLine("Nobody likes a quitter...");
 			}
 		}
 
+		//the method for asking a question and returning a string answer
 		static string Question(string question)
 		{
 			Console.WriteLine(question);
